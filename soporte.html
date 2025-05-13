@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiWeb - Centro de Soporte</title>
+    <style>
+        /* Estilos generales */
+        :root {
+            --color-primario: #2C3E50;
+            --color-secundario: #3498DB;
+            --color-acento: #E74C3C;
+            --color-texto: #333333;
+            --color-fondo: #F9F9F9;
+            --color-blanco: #FFFFFF;
+            --color-sombra: rgba(0, 0, 0, 0.1);
+            --color-borde: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--color-blanco);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px var(--color-sombra);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--color-primario);
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--color-primario);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--color-secundario);
+        }
+        
+        .btn-login {
+            background-color: var(--color-secundario);
+            color: var(--color-blanco);
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+        }
+        
+        .page-header {
+            margin-bottom: 40px;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            color: var(--color-primario);
+            margin-bottom: 10px;
+        }
+        
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--color-primario);
+            opacity: 0.8;
+        }
+        
+        /* Secciones de soporte */
+        .support-section {
+            background-color: var(--color-blanco);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px var(--color-sombra);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--color-primario);
+        }
+        
+        .section-header span {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--color-borde);
+            padding-bottom: 15px;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .faq-answer {
+            color: #555;
+        }
+        
+        /* Formulario de contacto */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--color-borde);
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Tutoriales */
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .tutorial-card {
+            text-align: center;
+        }
+        
+        .tutorial-thumbnail {
+            width: 100%;
+            height: 150px;
+            background-color: #eee;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .tutorial-title {
+            font-weight: 500;
+        }
+        
+        /* Contacto */
+        .contact-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+            border-radius: 50%;
+            font-size: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--color-secundario);
+        }
+        
+        .direct-contact {
+            line-height: 1.8;
+        }
+        
+        /* Botones */
+        .btn {
+            display: inline-block;
+            background-color: var(--color-secundario);
+            color: var(--color-blanco);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background-color: var(--color-acento);
+        }
+        
+        .btn:hover {
+            background-color: #2980B9;
+        }
+        
+        .btn-primary:hover {
+            background-color: #C0392B;
+        }
+        
+        /* Chat Button */
+        .chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-acento);
+            color: var(--color-blanco);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, background-color 0.3s;
+            z-index: 99;
+        }
+        
+        .chat-button:hover {
+            background-color: #C0392B;
+            transform: scale(1.1);
+        }
+        
+        .chat-button::after {
+            content: "¿Necesitas ayuda?";
+            position: absolute;
+            right: 70px;
+            white-space: nowrap;
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .chat-button:hover::after {
+            opacity: 1;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+            padding: 30px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 10px;
+            }
+            
+            .contact-methods {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .chat-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">OptiWeb</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#porque">¿Por qué OptiWeb?</a></li>
+                    <li><a href="index.html#prueba">Prueba Gratis</a></li>
+                    <li><a href="index.html#login" class="btn-login">Iniciar sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Centro de Soporte</h1>
+                <p class="page-subtitle">Encuentra respuestas o contáctanos directamente</p>
+            </div>
+            
+            <!-- Sección FAQ -->
+            <div class="support-section">
+                <div class="section-header">
+                    <span>📌</span>
+                    <h2>Preguntas Frecuentes (FAQ)</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">¿Cómo restablezco mi contraseña?</div>
+                    <div class="faq-answer">Puedes restablecer tu contraseña haciendo clic en "¿Olvidaste tu contraseña?" en la página de inicio de sesión. Recibirás un correo con instrucciones para crear una nueva contraseña segura.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">¿Cómo agrego un nuevo producto?</div>
+                    <div class="faq-answer">Dirígete al módulo de Inventario, haz clic en el botón "Agregar producto" y completa el formulario con los datos requeridos. No olvides guardar los cambios al finalizar.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">¿Puedo exportar mis reportes?</div>
+                    <div class="faq-answer">Sí, en cada módulo encontrarás opciones para exportar reportes en formatos PDF o Excel. Busca el botón "Exportar" en la parte superior de las tablas de datos.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">¿Cómo contacto al soporte?</div>
+                    <div class="faq-answer">Puedes usar el formulario de contacto en esta página, el chat en vivo o comunicarte directamente al correo soporte@optiweb.com o al teléfono (961) 123 4567.</div>
+                </div>
+            </div>
+            
+            <!-- Sección Formulario de contacto -->
+            <div class="support-section">
+                <div class="section-header">
+                    <span>📨</span>
+                    <h2>Formulario de contacto</h2>
+                </div>
+                
+                <form>
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="asunto">Asunto</label>
+                        <input type="text" id="asunto" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                </form>
+            </div>
+            
+            <!-- Sección Tutoriales -->
+            <div class="support-section">
+                <div class="section-header">
+                    <span>🎥</span>
+                    <h2>Tutoriales</h2>
+                </div>
+                
+                <div class="tutorials-grid">
+                    <div class="tutorial-card">
+                        <div class="tutorial-thumbnail">imagenes/tutorial1.jpg</div>
+                        <div class="tutorial-title">Cómo usar el módulo de inventario</div>
+                    </div>
+                    <div class="tutorial-card">
+                        <div class="tutorial-thumbnail">imagenes/tutorial2.jpg</div>
+                        <div class="tutorial-title">Exportación de reportes</div>
+                    </div>
+                    <div class="tutorial-card">
+                        <div class="tutorial-thumbnail">imagenes/tutorial3.jpg</div>
+                        <div class="tutorial-title">Gestión de clientes</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección Contacto -->
+            <div class="support-section">
+                <div class="section-header">
+                    <span>📞</span>
+                    <h2>Redes sociales y contacto</h2>
+                </div>
+                
+                <div class="contact-methods">
+                    <div>
+                        <div class="social-links">
+                            <a href="#" class="social-link">f</a>
+                            <a href="#" class="social-link">in</a>
+                            <a href="#" class="social-link">w</a>
+                        </div>
+                    </div>
+                    
+                    <div class="direct-contact">
+                        <p><strong>Soporte:</strong> soporte@optiweb.com</p>
+                        <p><strong>Teléfono:</strong> (961) 123 4567</p>
+                        <p>Horario de atención: Lunes a Viernes de 9:00 a 18:00 hrs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">OptiWeb</div>
+            <p>&copy; 2023 OptiWeb. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Chat Button -->
+    <button class="chat-button" aria-label="Abrir chat de ayuda">💬</button>
+</body>
+</html>
